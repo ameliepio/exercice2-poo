@@ -11,7 +11,6 @@ function guerrier(nom,force,defense,sante,){
  };
 }
 
-
 /*Les personnages*/
 var guerrier1 = new guerrier('hulck',100,50,75,[])
 
@@ -23,28 +22,29 @@ alert(guerrier2.nom)
 
 guerrier1.sante=guerrier1.sante-guerrier2.force;
 
-alert(guerrier1.sante+" sante du guerrier1");
+alert(guerrier1.nom + " a "+ guerrier1.sante +" de sante ");
 
-// essai//
+// Attaque//
 attaquer=function(){
   if(guerrier1.sante>guerrier2.sante){
 
   guerrier1.sante=guerrier1.sante+10;
 
-  alert(guerrier1.nom + " a "+ guerrier1.sante +" points de sante ");
+  alert(guerrier1.nom + " attaque "+ guerrier2.nom +" il lui reste "+ guerrier1.sante+ " de vie ");
+
 
 }if(guerrier2.sante>guerrier1.sante){
 
   guerrier2.sante=guerrier2.sante+10;
+  alert(guerrier2.nom + " attaque "+ guerrier1.nom +" il lui reste "+ guerrier2.sante+ " de vie " );
 
-  alert(guerrier2.nom +" a " + guerrier2.sante + " points de sante ");
   }
   else {
     alert("perdu");
   }
 };
 attaquer();
-// fin essai//
+// fin Attaque//
 
 /*Création du magicien*/
 
@@ -60,7 +60,9 @@ function magic(nom,force,defense,sante,mana,){
  }
 var magicien=new magic('merlin',200,100,80,250,[])
 
-alert(magicien.sante + " sante du magicien");
+// alert( magicien.nom +" a "+ magicien.sante + " de sante ");
+
+// soins
 
 soin= function(){
 
@@ -68,9 +70,10 @@ if(magicien.sante>=10){
 
 magicien.mana=magicien.mana-10;
 magicien.sante=magicien.sante+10;
-alert(magicien.sante+" sante magicien");
+alert( magicien.nom +" a "+ magicien.sante+" de sante" );
 
 }else{
+
 
 alert("pas assez de mana");
 };
@@ -78,30 +81,24 @@ alert("pas assez de mana");
 }
 soin();
 
-/*Attaque*/
+// Attaque//
+combat=function(){
+  if(guerrier.sante>magicien.sante){
 
-// attaquer= function(){
-//
-// if (this.sante > 0) {
-//
-// var perte = this.force;
-// this.sante = this.sante -perte;
-// }
-//
-// if (this.sante > 0) {
-//
-// alert(this.nom + " a encore " + this.sante + " points de vie");
-//
-// }else{
-//
-// this.sante = 0;
-//
-// }
-// magicien.attaquer(guerrier1);
-// alert(this.nom + " a encore " + this.sante + " points de vie");
-//
-// magicien.attaquer(guerrier2);
-// guerrier1.attaquer(magicien);
-// guerrier2.attaquer(magicien);
-// }
-// attaquer();
+  guerrier.sante=guerrier.sante+10;
+
+  alert(guerrier.nom + " attaque "+ magicien.sante +" il lui reste "+ guerrier.sante+ " de vie ");
+
+}if(magicien.sante>guerrier.sante){
+
+  magicien.sante=magicien.sante+10;
+  alert(magicien.sante + " attaque "+ guerrier.nom +" il lui reste "+ magicien.sante+ " de vie " );
+
+  }
+  else {
+
+    magicien.mana=magicien.mana+10
+    alert(magicien.nom + " vient de se soigner il lui reste "+ magicien.mana+ " de mana" );
+  }
+};
+combat()
